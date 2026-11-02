@@ -1,0 +1,13 @@
+{
+  "name": "corterra-book",
+  "description": "The Corterra Book plugin: run your booking business from Claude through your own account. It asks before it saves anything and never takes a payment.",
+  "owner": {
+    "name": "Development Technologies Hub LLC"
+  },
+  "plugins": [
+    {
+      "name": "corterra-book",
+      "source": "./corterra-book"
+    }
+  ]
+}

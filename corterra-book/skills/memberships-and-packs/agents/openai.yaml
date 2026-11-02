@@ -1,0 +1,13 @@
+interface:
+  display_name: "Memberships and packs"
+  short_description: "Set up memberships, packs, combos and their shop listing"
+  default_prompt: "Create a 10-visit sauna pack for $200."
+policy:
+  allow_implicit_invocation: true
+dependencies:
+  tools:
+    - type: mcp
+      value: corterra-book
+      description: "Corterra Book, the business's own booking account"
+      transport: streamable_http
+      url: https://mcp.corterrabook.com/mcp

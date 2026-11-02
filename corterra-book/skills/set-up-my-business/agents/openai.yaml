@@ -1,0 +1,13 @@
+interface:
+  display_name: "Set up my business"
+  short_description: "Set up services, hours, providers and booking settings"
+  default_prompt: "Help me set up my business on Corterra Book."
+policy:
+  allow_implicit_invocation: true
+dependencies:
+  tools:
+    - type: mcp
+      value: corterra-book
+      description: "Corterra Book, the business's own booking account"
+      transport: streamable_http
+      url: https://mcp.corterrabook.com/mcp

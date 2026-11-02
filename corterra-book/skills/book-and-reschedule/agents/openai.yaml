@@ -1,0 +1,13 @@
+interface:
+  display_name: "Book and reschedule"
+  short_description: "Book, move, cancel, confirm and check in bookings"
+  default_prompt: "Book Dana Reyes for a 60-minute massage next Tuesday at 2pm."
+policy:
+  allow_implicit_invocation: true
+dependencies:
+  tools:
+    - type: mcp
+      value: corterra-book
+      description: "Corterra Book, the business's own booking account"
+      transport: streamable_http
+      url: https://mcp.corterrabook.com/mcp

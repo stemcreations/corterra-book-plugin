@@ -1,0 +1,13 @@
+interface:
+  display_name: "Fill quiet days"
+  short_description: "Find slow days and invite the regulars who book them"
+  default_prompt: "Tuesdays are dead. Who could I invite in?"
+policy:
+  allow_implicit_invocation: true
+dependencies:
+  tools:
+    - type: mcp
+      value: corterra-book
+      description: "Corterra Book, the business's own booking account"
+      transport: streamable_http
+      url: https://mcp.corterrabook.com/mcp

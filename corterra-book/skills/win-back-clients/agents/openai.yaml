@@ -1,0 +1,13 @@
+interface:
+  display_name: "Win back clients"
+  short_description: "Find regulars who stopped coming and reach out"
+  default_prompt: "Who used to come in a lot but stopped?"
+policy:
+  allow_implicit_invocation: true
+dependencies:
+  tools:
+    - type: mcp
+      value: corterra-book
+      description: "Corterra Book, the business's own booking account"
+      transport: streamable_http
+      url: https://mcp.corterrabook.com/mcp

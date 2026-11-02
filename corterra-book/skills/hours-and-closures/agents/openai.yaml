@@ -1,0 +1,13 @@
+interface:
+  display_name: "Hours and closures"
+  short_description: "Change hours, close a day or close early"
+  default_prompt: "We're closed on Thanksgiving."
+policy:
+  allow_implicit_invocation: true
+dependencies:
+  tools:
+    - type: mcp
+      value: corterra-book
+      description: "Corterra Book, the business's own booking account"
+      transport: streamable_http
+      url: https://mcp.corterrabook.com/mcp

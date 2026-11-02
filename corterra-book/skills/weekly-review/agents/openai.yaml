@@ -1,0 +1,13 @@
+interface:
+  display_name: "Weekly review"
+  short_description: "How last week went and how next week looks"
+  default_prompt: "How did last week go?"
+policy:
+  allow_implicit_invocation: true
+dependencies:
+  tools:
+    - type: mcp
+      value: corterra-book
+      description: "Corterra Book, the business's own booking account"
+      transport: streamable_http
+      url: https://mcp.corterrabook.com/mcp

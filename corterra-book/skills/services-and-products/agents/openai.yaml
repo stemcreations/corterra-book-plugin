@@ -1,0 +1,13 @@
+interface:
+  display_name: "Services and products"
+  short_description: "Add or change services, classes, add-ons and retail"
+  default_prompt: "Add a 30-minute infrared sauna session for $25."
+policy:
+  allow_implicit_invocation: true
+dependencies:
+  tools:
+    - type: mcp
+      value: corterra-book
+      description: "Corterra Book, the business's own booking account"
+      transport: streamable_http
+      url: https://mcp.corterrabook.com/mcp
