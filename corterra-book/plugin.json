@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "corterra-book",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Run your Corterra Book booking business from ChatGPT: set it up; add or change services, classes and products; build memberships, packs and combos; change your hours and closures; book and move appointments; fill quiet days; win back clients; and review the week. It works through your own account, asks before it saves anything, and never takes a payment.",
   "author": {
     "name": "Development Technologies Hub LLC",

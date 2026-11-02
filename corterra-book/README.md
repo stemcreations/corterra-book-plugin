@@ -15,7 +15,8 @@ follows for the jobs owners ask for most:
 
 ## How to use it
 
-1. Install the plugin, then connect Corterra Book from its Connectors tab.
+1. Install the plugin, then connect Corterra Book from its Connectors tab. In Claude Code,
+   install it with `/plugin install corterra-book --marketplace stemcreations/corterra-book-plugin`.
 2. Sign in with your Corterra Book dashboard email and password, choose **Read & write**,
    check the business name, and press **Allow**. Only the business owner can connect.
 3. Ask in your own words, for example "Help me set up my business" or "How did last week
