@@ -8,8 +8,9 @@ does and what data it sends.
 ## Install
 
 - **Claude**: find Corterra Book in the plugin directory, or add this repository as a
-  plugin marketplace in Claude Code (`/plugin marketplace add <this repository>`), then
-  install `corterra-book` and connect it from its Connectors tab.
+  plugin marketplace in Claude Code
+  (`/plugin marketplace add stemcreations/corterra-book-plugin`), then install it
+  (`/plugin install corterra-book@corterra-book`) and connect it from its Connectors tab.
 - **ChatGPT**: find Corterra Book in the plugin directory and press Connect.
 
 Either way you sign in with your Corterra Book dashboard email and password. The plugin
