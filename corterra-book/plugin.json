@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "corterra-book",
-  "version": "1.1.1",
-  "description": "Run your Corterra Book booking business from ChatGPT: set it up; add or change services, classes and products; build memberships, packs and combos; change your hours and closures; book and move appointments; fill quiet days; win back clients; and review the week. It works through your own account, asks before it saves anything, and never takes a payment.",
+  "version": "1.2.0",
+  "description": "Run your Corterra Book booking business from ChatGPT: set it up; add or change services, classes and products; build memberships, packs and combos; change your hours and closures; book and move appointments; fill quiet days; win back clients; set up follow-up emails that send themselves; and review the week. It works through your own account, asks before it saves anything, and never takes a payment.",
   "author": {
     "name": "Development Technologies Hub LLC",
     "url": "https://corterrabook.com"
@@ -13,7 +13,7 @@
       "interface": {
         "displayName": "Corterra Book",
         "shortDescription": "Bookings, setup and outreach",
-        "longDescription": "Corterra Book is booking software for spas, saunas, massage therapists and studios. Connect it and ask in your own words: set up a new business or see what is already set up; add or change services, classes, add-ons and retail items; build memberships, packs and combos; change your hours, close for a day or part of a day, and set holidays; book, move, cancel and check in appointments; find quiet days and the regulars who could fill them; see who has drifted away and draft a win-back email for your review; and get a read on last week's bookings, new clients, no-shows and sales. It asks before it saves anything, and it can never charge a card, take a payment or issue a refund. You need a Corterra Book account, and you sign in with your dashboard login when you connect.",
+        "longDescription": "Corterra Book is booking software for spas, saunas, massage therapists and studios. Connect it and ask in your own words: set up a new business or see what is already set up; add or change services, classes, add-ons and retail items; build memberships, packs and combos; change your hours, close for a day or part of a day, and set holidays; book, move, cancel and check in appointments; find quiet days and the regulars who could fill them; see who has drifted away and draft a win-back email for your review; set up review requests, rebook reminders, a first-visit welcome and win-back emails that go out on their own, and see who booked after them; and get a read on last week's bookings, new clients, no-shows and sales. It asks before it saves anything, and it can never charge a card, take a payment or issue a refund. You need a Corterra Book account, and you sign in with your dashboard login when you connect.",
         "developerName": "Development Technologies Hub LLC",
         "websiteURL": "https://corterrabook.com",
         "supportURL": "https://corterrabook.com/support",

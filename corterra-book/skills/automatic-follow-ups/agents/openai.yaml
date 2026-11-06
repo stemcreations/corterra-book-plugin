@@ -1,0 +1,13 @@
+interface:
+  display_name: "Automatic follow-ups"
+  short_description: "Review asks, rebook reminders and win-backs that send themselves"
+  default_prompt: "Set up an email asking for a review after each visit"
+policy:
+  allow_implicit_invocation: true
+dependencies:
+  tools:
+    - type: mcp
+      value: corterra-book
+      description: "Corterra Book, the business's own booking account"
+      transport: streamable_http
+      url: https://mcp.corterrabook.com/mcp

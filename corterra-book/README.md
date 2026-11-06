@@ -1,13 +1,14 @@
 # Corterra Book
 
 Run your Corterra Book booking business from Claude or ChatGPT. This plugin connects the AI
-app to your own Corterra Book account and adds eight skills, step-by-step guides the AI
+app to your own Corterra Book account and adds nine skills, step-by-step guides the AI
 follows for the jobs owners ask for most:
 
 - **set-up-my-business**: set up a new business, or see what is already set up
 - **book-and-reschedule**: book, move, cancel, confirm and check in appointments
 - **fill-quiet-days**: find quiet days and invite the regulars who usually book them
 - **win-back-clients**: find customers who stopped coming and decide how to reach them
+- **automatic-follow-ups**: review requests, rebook reminders, a welcome and win-back emails that send themselves, and your review links
 - **services-and-products**: add or change services, classes, add-ons and retail items
 - **memberships-and-packs**: add or change memberships, packs and combos, and what the online shop sells
 - **hours-and-closures**: change your hours, close for a day or part of a day, set holidays

@@ -31,6 +31,8 @@ Copy this checklist and tick it off as you go.
 
 - [ ] 1. **Read what is set up, once, before asking anything**: `get_business_info()`, `get_business_settings()`, `get_business_hours()`, `list_products()`, `list_providers()` and `get_business_page()`. Tell the owner in a few lines what is done and what is missing. Skip any step below that is already done, unless the owner wants to change it.
 - [ ] 2. **Business details and booking settings.** Confirm the business name, then the timezone: without the right timezone, same-day times don't show to customers. Then ask about the booking rules that matter to them: time between appointments, how far ahead people can book, how late they can cancel, and whether bookings confirm on their own. Save with `update_business_info()` and `update_business_settings()`, sending only what changes.
+  - Colours, if the owner wants their own: the background (`secondary_color`) sits behind every page their customers see and the kiosk; the accent (`primary_color`) colours buttons, links, prices and their emails. Both are kept readable, so an accent that wouldn't read on the background is adjusted on the pages: say so rather than promise the exact colour everywhere, and point them to the Branding page's preview to see it. No background is a light page (send `""` to clear one).
+  - The font family reaches their pages and the kiosk; the weight changes the mobile app only.
 - [ ] 3. **Weekly hours and holidays.** Ask for the open hours of each day. Save one block per open stretch with `add_business_hours()`: days run 0 = Monday to 6 = Sunday, times are 24-hour `HH:MM`, and a lunch break is two blocks. A day that already has hours: remove its block with `remove_business_hours()` before adding the new one. Ask which holidays they close for, offering the ones in `get_business_hours()`'s `holiday_catalog`, and use each holiday's `key` from there. `set_observed_holidays()` replaces the whole list, so send every holiday they observe, the ones already observed included. A date of their own that comes back every year goes to `add_custom_holiday()`.
 - [ ] 4. **Services.** For each service ask the name, the length, the price and, for a group, what each extra person pays. Put it in a category: read `list_product_categories()`, and create one with `create_product_category()` only when none fits. Save each with `create_product()`. If it is refused with `tax_code_required`, read `list_tax_codes()`, ask which code fits, and save again with it.
 - [ ] 5. **Providers (Pro).** Ask who performs the services and when they work. Create each with `create_provider()`, then give each the services they do with `set_provider_products()`.
@@ -40,9 +42,9 @@ Copy this checklist and tick it off as you go.
   - A pack: ask the services it covers, the number of visits, the price, and whether it expires. Save with `create_bundle()`.
   - A membership's name, price and billing period, and a pack's price and visit count, can't be changed from here afterwards, so read them back before saving.
 - [ ] 7. **The Business Page.** Read `get_business_page()` and offer what is already on file. Write the tagline and the About text with the owner. Before saving, say that the page's email is also the reply-to address for their emails and its address is their sales-tax address. Save with `update_business_page()`, and publish only when they say so.
-- [ ] 8. **Finish.** Read back what was set up, then list what they finish in the dashboard: connecting payments, the logo and photos, sales tax, staff accounts and the kiosk (Pro), and messaging.
+- [ ] 8. **Finish.** Read back what was set up, then list what they finish in the dashboard: connecting payments, the logo and photos, sales tax, staff accounts and the kiosk (Pro), and messaging. Then offer the automatic follow-up emails and review links as a next step (automatic-follow-ups).
 
-A business that is already set up: give a short picture of it, then one line on each thing you can help with next: booking and moving appointments, filling quiet days, winning back clients, adding or changing services and products, memberships and packs, changing hours and closures, and a weekly review.
+A business that is already set up: give a short picture of it, then one line on each thing you can help with next: booking and moving appointments, filling quiet days, winning back clients, automatic follow-up emails and review links, adding or changing services and products, memberships and packs, changing hours and closures, and a weekly review.
 
 ## Gotchas
 
@@ -60,3 +62,4 @@ A business that is already set up: give a short picture of it, then one line on 
 - Changing hours, closing a day or part of one: hours-and-closures.
 - Booking a customer: book-and-reschedule.
 - How the business is doing: weekly-review.
+- Automatic follow-up emails and review links: automatic-follow-ups.

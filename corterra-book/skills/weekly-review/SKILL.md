@@ -26,16 +26,17 @@ The tools here are on the Corterra Book connector. If a call fails because nothi
 | next week's classes | `list_upcoming_classes()` with `days` 7, its `summary` |
 | how the customer list is doing | `find_customers_by_activity()` with `limit` 1, its `summary` |
 | prepaid packs still owed | `analyze_prepaid_usage()` with `view` `packs` and `limit` 1, its `liability` and `bands` |
+| what the automatic follow-up emails did | `get_automation_results()` with `days` 7 |
 
 ## Steps
 
 Copy this list and tick it off.
 
-- [ ] Read each report once, with a small `limit` (the summaries carry the answers): `analyze_no_shows()`, `list_new_clients()`, `analyze_sales()`, `analyze_staff_revenue()`, `find_schedule_gaps()`, `list_upcoming_classes()`, `find_customers_by_activity()`, `analyze_prepaid_usage()`.
+- [ ] Read each report once, with a small `limit` (the summaries carry the answers): `analyze_no_shows()`, `list_new_clients()`, `analyze_sales()`, `analyze_staff_revenue()`, `find_schedule_gaps()`, `list_upcoming_classes()`, `find_customers_by_activity()`, `analyze_prepaid_usage()`, `get_automation_results()`.
 - [ ] Write a short summary in this order, each figure with its dates:
   - **Last week:** bookings, cancellations and no-shows (with the no-show rate); new clients, and how many have not come back; what sold, `sales_collected_cents` by kind; service revenue by provider.
   - **Next week:** the quietest days, each with how booked its columns are (from `columns`, its `quietest_column` first), and for a column with a high `booked_same_day_pct` that it mostly fills on the day; any class with seats left.
-  - **Customers:** how many fall in each band of days since their last visit, and how many are `overdue`; the packs still owed, by value, with its basis.
+  - **Customers:** how many fall in each band of days since their last visit, and how many are `overdue`; the packs still owed, by value, with its basis; and for each automatic follow-up that is on, the emails it sent last week and how many of those customers booked within 7 days.
 - [ ] End with at most three next steps, each one thing to do and the skill that does it, e.g. fill next Tuesday (fill-quiet-days), win back the lapsed regulars (win-back-clients), welcome back the new clients who came once (win-back-clients). Ask which, if any, the owner wants, and do nothing until they say.
 
 ## Gotchas
@@ -50,6 +51,7 @@ Copy this list and tick it off.
 - `find_schedule_gaps()` and `list_upcoming_classes()` count forward from today, today included.
 - A day's own `utilization_pct` blends every column, and a column with many seats holds it near 0%. Never call a day empty from it; give each column's share from `columns`.
 - A column with a high `booked_same_day_pct` (walk-ins) always looks open ahead. Say it mostly fills on the day rather than calling it empty, and lead the quiet days with the columns people book ahead.
+- `get_automation_results()` takes 7, 30 or 90 days ending today, never other dates: when the owner named other dates, give its figures as the last 7 days. A follow-up that is off sends nothing, so say it is off rather than reporting zeros. `booked` is a booking made within 7 days of an email, not proof the email brought it.
 
 ## Hand off
 
@@ -57,3 +59,4 @@ Copy this list and tick it off.
 - Customers drifting away, idle packs, new clients who came once: win-back-clients.
 - A closed day or new hours ahead: hours-and-closures.
 - Booking, moving or cancelling someone: book-and-reschedule.
+- Switching on or changing the automatic follow-up emails: automatic-follow-ups.

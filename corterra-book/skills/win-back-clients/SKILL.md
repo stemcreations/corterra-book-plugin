@@ -1,6 +1,6 @@
 ---
 name: win-back-clients
-description: Finds a business's customers who used to come in regularly and stopped on Corterra Book, biggest loss first, along with pack holders who stopped using their visits, newer customers who drifted off and members who have not been in, then helps reach them with a call list, an email campaign or an offer email. Use when the owner asks who stopped coming, who to win back or reach out to, who has not been in for a while, who still has visits left on a pack, or which members are not using their membership. For filling one slow day or week, use fill-quiet-days; for booking someone who replies, use book-and-reschedule.
+description: Finds a business's customers who used to come in regularly and stopped on Corterra Book, biggest loss first, along with pack holders who stopped using their visits, newer customers who drifted off and members who have not been in, then helps reach them with a call list, an email campaign or an offer email. Use when the owner asks who stopped coming, who to win back or reach out to, who has not been in for a while, who still has visits left on a pack, or which members are not using their membership. For filling one slow day or week, use fill-quiet-days; for booking someone who replies, use book-and-reschedule; for a win-back email that goes out on its own from now on, use automatic-follow-ups.
 ---
 
 The tools here are on the Corterra Book connector. If a call fails because nothing is connected, tell the owner to connect Corterra Book from this plugin's Connectors tab, sign in with their dashboard email and password, and choose Read & write.
@@ -28,6 +28,7 @@ The tools here are on the Corterra Book connector. If a call fails because nothi
 | an offer, only when the owner asks | `list_promo_codes()`, `create_promo_code()` |
 | an email to the group (Pro) | `preview_campaign_audience()`, `draft_campaign()`, `review_campaign()`, `send_draft_campaign()`, `list_campaigns()` |
 | an offer email to one person | `send_offer_email()` |
+| whether the automatic win-back email is on | `list_automations()` |
 
 ## Steps
 
@@ -51,6 +52,7 @@ Copy the list for the owner's question and tick it off, then reach the people th
 - [ ] An email to the group (Pro): `preview_campaign_audience()` with the chosen `customer_ids`, then `draft_campaign()` with those `customer_ids`, a subject and a short message, and a `promo_code_id` only if the owner asked for an offer. Then `review_campaign()`, show the owner the subject, the message and the people, and send with `send_draft_campaign()` only on their yes.
 - [ ] An offer the owner asked for: read `list_promo_codes()` and reuse a live code that fits, or ask the discount, the services and the end date, create it with `create_promo_code()`, and read its `label` back. For a few people, `send_offer_email()` to each, after the owner's yes for each.
 - [ ] Afterwards, `list_campaigns()` shows each campaign's opens, the bookings that used its code, and the revenue.
+- [ ] To keep it going, read `list_automations()`. If the Win-back (`win_back`) is off, say that switched on, it emails each regular who stops coming on its own from then on, never the ones already lapsed, and offer to set it up (automatic-follow-ups). Switch nothing on from here.
 
 ## Gotchas
 
@@ -69,3 +71,4 @@ Copy the list for the owner's question and tick it off, then reach the people th
 - Filling one slow day or week: fill-quiet-days.
 - Booking someone who replies: book-and-reschedule.
 - How the business is doing week to week: weekly-review.
+- Win-back, rebook and review emails that go out on their own: automatic-follow-ups.
