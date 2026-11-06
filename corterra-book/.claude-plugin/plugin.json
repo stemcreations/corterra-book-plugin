@@ -1,7 +1,7 @@
 {
   "name": "corterra-book",
   "displayName": "Corterra Book",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Run your Corterra Book booking business from Claude: set it up; add or change services, classes and products; build memberships, packs and combos; change your hours and closures; book and move appointments; fill quiet days; win back clients; set up follow-up emails that send themselves; and review the week. It works through your own account, asks before it saves anything, and never takes a payment.",
   "author": {
     "name": "Development Technologies Hub LLC",
