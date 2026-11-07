@@ -37,7 +37,7 @@ Copy this list and tick it off.
   - **Last week:** bookings, cancellations and no-shows (with the no-show rate); new clients, and how many have not come back; what sold, `sales_collected_cents` by kind; service revenue by provider.
   - **Next week:** the quietest days, each with how booked its columns are (from `columns`, its `quietest_column` first), and for a column with a high `booked_same_day_pct` that it mostly fills on the day; any class with seats left.
   - **Customers:** how many fall in each band of days since their last visit, and how many are `overdue`; the packs still owed, by value, with its basis; and for each automatic follow-up that is on, the emails it sent last week and how many of those customers booked within 7 days.
-- [ ] End with at most three next steps, each one thing to do and the skill that does it, e.g. fill next Tuesday (fill-quiet-days), win back the lapsed regulars (win-back-clients), welcome back the new clients who came once (win-back-clients). Ask which, if any, the owner wants, and do nothing until they say.
+- [ ] End with at most three next steps, each one thing to do and the skill that does it, e.g. fill next Tuesday (fill-quiet-days), win back the lapsed regulars (win-back-clients), welcome back the new clients who came once (win-back-clients). A step may cover two things one skill does; never add a suggestion for another skill inside a step. Ask which, if any, the owner wants, and do nothing until they say.
 
 ## Gotchas
 

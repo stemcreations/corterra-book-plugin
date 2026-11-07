@@ -47,7 +47,7 @@ Copy the list for the owner's question and tick it off, then reach the people th
 - [ ] Read `analyze_prepaid_usage()` with `view` `members`. Show `bands`, the number of members by how long since their last visit, and pull the band the owner picks with `band`.
 - [ ] For each member: their plan (`tier_name`), their last visit, and the visits they have left this month (`allowance_limits`). Leave out anyone with `upcoming_redemptions` above 0.
 
-**Reach them**, the owner's choice:
+**Reach them**, the owner's choice of a call or text list or an email to the group. The offer below is only for an owner who asked for a discount: never list it as a choice.
 - [ ] A call or text list, on any plan: the names, the number to dial (`phone_e164`) and email, and their usual day and time (`habits`, on both lists; a null one has no clear leader, so leave it blank). To offer a real time, read `check_availability()` for that day.
 - [ ] An email to the group (Pro): `preview_campaign_audience()` with the chosen `customer_ids`, then `draft_campaign()` with those `customer_ids`, a subject and a short message, and a `promo_code_id` only if the owner asked for an offer. Then `review_campaign()`, show the owner the subject, the message and the people, and send with `send_draft_campaign()` only on their yes.
 - [ ] An offer the owner asked for: read `list_promo_codes()` and reuse a live code that fits, or ask the discount, the services and the end date, create it with `create_promo_code()`, and read its `label` back. For a few people, `send_offer_email()` to each, after the owner's yes for each.
