@@ -26,7 +26,7 @@ The tools here are on the Corterra Book connector. If a call fails because nothi
 | one person's packs, membership and bookings | `get_customer_overview()` |
 | a real open time to offer | `check_availability()` |
 | an offer, only when the owner asks | `list_promo_codes()`, `create_promo_code()` |
-| an email to the group (Pro) | `preview_campaign_audience()`, `draft_campaign()`, `review_campaign()`, `send_draft_campaign()`, `list_campaigns()` |
+| an email to the group (Pro) | `preview_campaign_audience()`, `draft_campaign()`, `review_campaign()`, `send_campaign_test()`, `send_draft_campaign()`, `list_campaigns()` |
 | an offer email to one person | `send_offer_email()` |
 | whether the automatic win-back email is on | `list_automations()` |
 
@@ -49,9 +49,9 @@ Copy the list for the owner's question and tick it off, then reach the people th
 
 **Reach them**, the owner's choice of a call or text list or an email to the group. The offer below is only for an owner who asked for a discount: never list it as a choice.
 - [ ] A call or text list, on any plan: the names, the number to dial (`phone_e164`) and email, and their usual day and time (`habits`, on both lists; a null one has no clear leader, so leave it blank). To offer a real time, read `check_availability()` for that day.
-- [ ] An email to the group (Pro): `preview_campaign_audience()` with the chosen `customer_ids`, then `draft_campaign()` with those `customer_ids`, a subject and a short message, and a `promo_code_id` only if the owner asked for an offer. Then `review_campaign()`, show the owner the subject, the message and the people, and send with `send_draft_campaign()` only on their yes.
+- [ ] An email to the group (Pro): `preview_campaign_audience()` with the chosen `customer_ids`, then `draft_campaign()` with those `customer_ids`, a subject and a short message, a `promo_code_id` only if the owner asked for an offer, and an item they want to sell as `shop_item_kind` + `shop_item_id`. Then `review_campaign()` and show the owner the subject, the message and the people. Ask whether they want a test copy in their own inbox first; on a yes, send it with `send_campaign_test()` and say where it went. Send with `send_draft_campaign()` only on their yes to sending.
 - [ ] An offer the owner asked for: read `list_promo_codes()` and reuse a live code that fits, or ask the discount, the services and the end date, create it with `create_promo_code()`, and read its `label` back. For a few people, `send_offer_email()` to each, after the owner's yes for each.
-- [ ] Afterwards, `list_campaigns()` shows each campaign's opens, the bookings that used its code, and the revenue.
+- [ ] Afterwards, `list_campaigns()` shows each campaign's opens, the bookings that used its code, the revenue, and what its Buy box sold.
 - [ ] To keep it going, read `list_automations()`. If the Win-back (`win_back`) is off, say that switched on, it emails each regular who stops coming on its own from then on, never the ones already lapsed, and offer to set it up (automatic-follow-ups). Switch nothing on from here.
 
 ## Gotchas
@@ -65,6 +65,8 @@ Copy the list for the owner's question and tick it off, then reach the people th
 - A campaign sends one message to everyone, so it cannot name each person's own pack balance. For that, the owner calls or texts.
 - `send_offer_email()` always carries a promo code, so it is never the way to send a check-in with no offer. Answering `failed` or `deferred`, it did not send: tell the owner.
 - `min_visits` under 3 for newer customers is refused `min_visits_too_low`: two visits are one gap, not a habit.
+- `{{first_name}}` in a campaign's subject or message becomes each customer's own first name, "there" when it is blank. It is the only placeholder; any other is refused.
+- To sell a membership, package or combo, attach it: its `kind` and `id` from `get_online_shop()` as `draft_campaign()`'s `shop_item_kind` and `shop_item_id`. Every email then carries a Buy box to the item's own page, and `list_campaigns()` counts what it sold. An email carries a code or an item, not both. The item's `link` typed into the message opens the same page, but what it sells is not counted. Never a link copied from a checkout page (`/shop/order/…`): it is one customer's order and closes after a day, and the draft is refused.
 
 ## Hand off
 

@@ -80,6 +80,7 @@ Copy the list for the job and tick it off.
 - [ ] Read `get_online_shop()` and say what customers would see: the `name`, the price and `includes`.
 - [ ] On a yes, list or unlist one item with `update_online_shop_item()`, `kind` and `item_id` from `get_online_shop()`: its name for customers, a blurb in the owner's words, who may buy it (`purchase_rule`) and its dates.
 - [ ] The shop's own switch, its note and gift cards: `update_online_shop()`, on a yes.
+- [ ] A link to one item, for an email, a post or a message: its `link` from `get_online_shop()`, the item's own page. Never a link copied from a checkout page (`/shop/order/…`): it is one customer's order, nobody else can use it, and it closes after a day.
 
 **Stop selling it**
 - [ ] For now: `is_active` false on `update_membership()`, `update_bundle()` or `update_combo()`. Customers keep what they bought.
