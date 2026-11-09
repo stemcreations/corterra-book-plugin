@@ -12,9 +12,10 @@
     "com.openai": {
       "interface": {
         "displayName": "Corterra Book",
-        "shortDescription": "Bookings, setup and outreach",
+        "shortDescription": "Run your booking business",
         "longDescription": "Corterra Book is booking software for spas, saunas, massage therapists and studios. Connect it and ask in your own words: set up a new business or see what is already set up; add or change services, classes, add-ons and retail items; build memberships, packs and combos; change your hours, close for a day or part of a day, and set holidays; book, move, cancel and check in appointments; find quiet days and the regulars who could fill them; see who has drifted away and draft a win-back email for your review; set up review requests, rebook reminders, a first-visit welcome and win-back emails that go out on their own, and see who booked after them; and get a read on last week's bookings, new clients, no-shows and sales. It asks before it saves anything, and it can never charge a card, take a payment or issue a refund. You need a Corterra Book account, and you sign in with your dashboard login when you connect.",
         "developerName": "Development Technologies Hub LLC",
+        "category": "Business & Operations",
         "websiteURL": "https://corterrabook.com",
         "supportURL": "https://corterrabook.com/support",
         "privacyPolicyURL": "https://corterrabook.com/legal/privacy",
@@ -27,7 +28,62 @@
         "logo": "./assets/icon.png",
         "composerIcon": "./assets/icon.png"
       },
-      "onboardingSkill": "./skills/set-up-my-business/SKILL.md"
+      "onboardingSkill": "./skills/set-up-my-business/SKILL.md",
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "The weekly review: the owner asks how the last week went. It reads last week's bookings, cancellations and no-shows, new clients and sales, sums them up with at most three next steps, and changes nothing.",
+              "prompt": "How did my business do last week?",
+              "tools_triggered": "list_bookings, list_new_clients, analyze_no_shows, analyze_sales",
+              "expected_behavior": "A short summary of last week: bookings and cancellations, no-shows, new clients, and what sold. It ends with at most three suggested next steps, and nothing in the account is changed or sent."
+            },
+            {
+              "description": "Winning back lapsed regulars: the owner asks who stopped coming. It reads the customers who used to come in regularly and stopped, biggest loss first, and contacts nobody.",
+              "prompt": "Who used to come in regularly and has stopped coming? I'd like to win them back.",
+              "tools_triggered": "find_win_back_customers",
+              "expected_behavior": "It shows how many lapsed customers came at least 3, 5, 10 or more times and asks how many visits makes someone a regular, or lists the lapsed regulars biggest loss first with their visits and last visit, leaving out anyone already booked. It offers a call list or a draft email, and sends no email and creates no promo code."
+            },
+            {
+              "description": "Booking an appointment for a new customer. It reads the services and the open times, reads the booking back, and books only after the owner says yes. The example.com address means no email reaches anyone.",
+              "prompt": "Book a new customer, Alex Rivera (alex.rivera@example.com), for one of my services tomorrow afternoon.",
+              "tools_triggered": "list_products, check_availability, create_booking",
+              "expected_behavior": "It asks which service if that is unclear, finds the open times tomorrow afternoon, and reads back the service, date, time and customer. Only after the owner says yes does it book, then it confirms the booking and says the confirmation goes to the customer's email."
+            },
+            {
+              "description": "Adding a new service to the business's catalog. It asks for what is missing, shows the service, and creates it only after the owner says yes.",
+              "prompt": "Add a 30-minute infrared sauna session for $25.",
+              "tools_triggered": "list_product_categories, list_providers, create_product",
+              "expected_behavior": "It asks for anything it needs that the prompt did not give (such as the category or who performs it), shows the service as it will be saved (name, length, price), and creates it only after the owner says yes. It then says the service is bookable."
+            },
+            {
+              "description": "Closing the business for a day. It checks the bookings on that day, asks what to do with them, and closes the day only after the owner says yes.",
+              "prompt": "We're closed on December 24.",
+              "tools_triggered": "get_business_hours, list_bookings, add_blackout_date",
+              "expected_behavior": "It names any bookings already on December 24 and asks what to do with them, then closes the whole day only after the owner says yes, and confirms the day is closed on the booking page. No booking is cancelled without the owner's say-so."
+            }
+          ],
+          "negative": [
+            {
+              "description": "A consumer looking for a spa to visit. Corterra Book runs the owner's own business: it cannot search for or book other businesses.",
+              "prompt": "Find me a day spa near downtown Denver with good reviews that has a massage opening this weekend."
+            },
+            {
+              "description": "An appointment on the user's own calendar. Corterra Book books the business's customers, not the user's personal appointments.",
+              "prompt": "Put a dentist appointment on my Google Calendar for Thursday at 3pm."
+            },
+            {
+              "description": "Paying staff. Corterra Book reports what each provider brought in but never moves money, so payroll belongs to the owner's payroll provider.",
+              "prompt": "Run payroll for my two massage therapists for last week."
+            }
+          ]
+        },
+        "commerce": false,
+        "commerce_description": "Corterra Book never takes a payment, charges a card or issues a refund through ChatGPT. The business sells its memberships and packs at its own front desk or on its own online shop."
+      },
+      "publication": {
+        "release_notes": "Corterra Book's first release in ChatGPT. Set up your business, add services, classes and products, build memberships and packs, change your hours and closures, book and move appointments, fill quiet days, win back clients, set up follow-up emails that send themselves, and review the week. It asks before it saves anything and never takes a payment."
+      }
     }
   }
 }
