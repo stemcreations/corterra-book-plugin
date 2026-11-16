@@ -26,6 +26,7 @@ The tools here are on the Corterra Book connector. If a call fails because nothi
 | when a visit counts: checked out, or its time has passed | `set_followups_start()` |
 | which services get a rebook reminder and when, and which the emails name | `set_service_followups()` |
 | the review links | `get_review_links()`, `update_review_links()` |
+| whether the business sells memberships or packs | `list_memberships()`, `list_bundles()` |
 | a follow-up of their own (Pro): after certain services, a first visit, a lapse, a cancel, a no-show or a pack running low, with its own waits, checks, branches and emails | `list_custom_followups()`, `create_custom_followup()` |
 | a custom follow-up changed, switched on or off | `update_custom_followup()` |
 | a custom follow-up gone for good | `delete_custom_followup()` |
@@ -38,12 +39,14 @@ The tools here are on the Corterra Book connector. If a call fails because nothi
 Copy the list for the owner's question and tick it off.
 
 **Setting them up**
-- [ ] Read `list_automations()` and `get_review_links()` once. Tell the owner in a few lines which follow-ups are on, when a visit counts (`start`), which services have a rebook reminder, and which review links are set.
+- [ ] Read `list_automations()`, `get_review_links()`, `list_memberships()` and `list_bundles()` once. Tell the owner in a few lines which follow-ups are on, when a visit counts (`start`), which services have a rebook reminder, and which review links are set.
 - [ ] When a visit counts. Out of the box it is when the visit is checked out at the front desk: the thank-you goes that moment, and a visit nobody checks out starts nothing. The other choice is once the appointment time has passed, and then the follow-ups go the next day. Change it with `set_followups_start()` only if the owner wants the other.
 - [ ] Review links, before the thank-you goes on. Ask for their Google review link, their Facebook page and any other review site; offer `facebook_suggestion` when it is there. Save with `update_review_links()`. A thank-you with no link to show is skipped.
-- [ ] Rebook weeks. For each service, suggest how many weeks until a client usually comes back for it, ask, and save with `set_service_followups()`. Ask which services the emails may name; leave anything private unnamed.
+- [ ] Rebook weeks. For each service, suggest how many weeks until a client usually comes back for it, ask, and save with `set_service_followups()`. A members-only service: ask whether members get a rebook reminder for it at all. Ask which services the emails may name; leave anything private unnamed.
 - [ ] Each follow-up the owner wants. Show its subject and wording from `list_automations()`, or your draft. Save the wording with `update_automation()` `emails` after the yes, then switch it on with `update_automation()` `enabled` true after a clear yes to switching it on.
 - [ ] The win-back. Confirm how long without a visit starts it (`lapse_days`, out of the box 60), whether to use each customer's own usual gap instead (`use_rhythm`), and the days before its second email (`wait_days`, out of the box 14).
+- [ ] A business with memberships: ask whether members should get the win-back. The ready-made one can't skip them. On Pro, a custom one copied from it (`copy_from`) can: a check for a membership, and an email to the business about the member in place of one to them (`email_business`), if the owner wants to hear. Once that one is on, switch the ready-made win-back off, so nobody gets two.
+- [ ] On Pro, offer the custom follow-ups that fit what the business sells: "pack running low" when it sells packs, and a membership invite a few days after a first visit, with a check that stops it for anyone who has one, when it sells memberships. Make the ones the owner wants as in the next part.
 - [ ] An offer the owner asked for, on the rebook reminder or the win-back. Read `list_promo_codes()` and reuse a retention code that fits, or ask the discount and how many days it is good for after the email, create it with `create_promo_code()` (`purpose` `retention`), read its `label` back, and attach it as that email's `promo_code_id`.
 
 **A follow-up of their own (Pro)**

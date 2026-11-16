@@ -38,9 +38,9 @@ Copy the list for the job and tick it off.
 - [ ] Read `get_business_hours()` once. On Pro, read `list_providers()` too: the business has weekly hours of its own and each provider has their own. When the owner does not say which they mean, ask.
 
 **New weekly hours**
-- [ ] Ask the days and times. A lunch break is two blocks on one day; a closed day has none.
+- [ ] Ask the days and times. A day holds one block of hours, and a closed day has none. A weekly lunch break can't be set: say so, and offer a time block for a gap on one date (below).
 - [ ] Read back the whole week as it will be, and say that bookings already made outside the new hours stay where they are.
-- [ ] On the yes, `remove_business_hours()` each row being replaced, by its `id`, then `add_business_hours()` each new block: days run 0 = Monday to 6 = Sunday, times are 24-hour `HH:MM`.
+- [ ] On the yes, `remove_business_hours()` each row being replaced, by its `id`, then `add_business_hours()` each new day: days run 0 = Monday to 6 = Sunday, times are 24-hour `HH:MM`.
 - [ ] A provider's hours (Pro): `update_provider()` with `hours`, that provider's whole week, every day that stays plus the change.
 
 **A whole day closed**
@@ -68,6 +68,7 @@ Copy the list for the job and tick it off.
 
 ## Gotchas
 
+- A day of the week holds one block of hours, in the weekly hours and in a provider's `hours`. `add_business_hours()` on a day that already has hours is refused with `day_has_hours`: remove that day's row first. A provider's `hours` with two blocks for one day are refused the same way.
 - A date holds one closed day. A second `add_blackout_date()` on a date already closed is refused: to change who it covers (another provider off the same day), remove that date's closed day and add one covering everyone who is off.
 - `get_business_hours()` lists past closed days too: look only at today and later.
 - Every `day_of_week` runs 0 = Monday to 6 = Sunday, in the weekly hours and in each provider's `hours`.
