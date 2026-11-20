@@ -46,6 +46,11 @@ Copy the list for the job and tick it off.
 - [ ] A members-only version follows the class. Ask which class, `duplicate_product()` it, then `update_product()` on the copy with `is_member`, `follows_class_id` and the membership the owner names in `membership_tier_ids`. Send none of the class's own name, length, seats, category or instructor.
 - [ ] New times for a class: read it with `product_id` and send `class_blocks` with every block that stays plus the change. A repeat being edited keeps its `series_id`.
 
+**A couples service (Pro)**
+- [ ] For two or more people booked together, each with their own provider at the same time, like a couples massage. Ask how many people, the price of the first person and of each other person, and who does it: at least that many providers, from `list_providers()`. Tell the owner each person gets their own provider at the same time, and customers choose a provider for each person only when more providers do it than people come.
+- [ ] Read it back, wait for the yes, and save with `create_product()`: `fixed_party_size`, `additional_seat_price`, `seats_on_separate_schedules` and the providers in `schedule_ids`. An existing service: `update_product()` with what changes.
+- [ ] Refused `separate_schedules_too_few` (fewer providers than people), `separate_schedules_need_fixed_party` (it needs a set number of people, never "up to"), `separate_schedules_not_applicable` (a class, an add-on, a retail item or a service that takes over a whole room), `separate_schedules_needs_pro`, or `separate_schedules_not_on_growth` (not yet with several locations): say what it needs in one sentence.
+
 **An add-on**
 - [ ] Ask the price, the time it adds (0 is fine) and which services offer it. Save with `create_product()`: `is_addon`, `duration_minutes`, `price` and `main_option_ids`. On Pro, ask whether everyone who does those services performs it; if not, send `schedule_ids`.
 - [ ] One more service for an add-on that exists: read the add-on with `product_id`, then `update_product()` on it with its `main_option_ids` plus the new service.
@@ -70,7 +75,7 @@ Copy the list for the job and tick it off.
 - A group needs `additional_seat_price`. Send 0 only when the extra people are free.
 - A members-only service can be saved before its membership exists, but nobody can book it until a membership includes it: say so.
 - Refused `no_performer`: the add-on's providers would leave one of its services with nobody to do it, and the message names the service.
-- `set_provider_products()` replaces the provider's whole list.
+- `set_provider_products()` replaces the provider's whole list. Taking a couples service off a provider can leave it with fewer providers than people: nothing refuses that, the Products page flags it, so say so first.
 - `list_products()` returns 25 at a time: check `complete` before counting.
 
 ## Hand off

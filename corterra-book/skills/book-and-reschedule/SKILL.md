@@ -7,7 +7,7 @@ The tools here are on the Corterra Book connector. If a call fails because nothi
 
 ## Always
 
-- Before booking, moving or cancelling, read back the customer, the service, the provider when there is one, the date and the time, say that the customer will be emailed, and wait for the owner's yes.
+- Before booking, moving or cancelling, read back the customer, the service, the provider when there is one (each person's on a couples service), the date and the time, say that the customer will be emailed, and wait for the owner's yes.
 - Offer only times `check_availability()` returned. Never promise a time you have not checked.
 - Never add up a price yourself: the server prices every booking, seat and add-on, and returns the total.
 - Ask before using a customer's pack or membership for a booking, and never choose what covers a seat in a group: ask.
@@ -39,14 +39,17 @@ Copy the list for the job and tick it off.
 - [ ] For a customer already on file, read `get_customer_overview()` once: it shows the packs and membership that could cover the booking.
 - [ ] Find the service with `list_products()`, using `search` with its name. If the owner names a provider, find them with `list_providers()`.
 - [ ] Read the open times with `check_availability()` for that date. For a group, give `party_size`, everyone including the booker; with add-ons, give the same `addon_option_ids` the booking will carry. If the time asked for is not open, offer the nearest open ones.
+- [ ] A couples service (`seats_on_separate_schedules` in `list_products()`, like a couples massage): one booking for its `fixed_party_size` people, each with their own provider at the same time. Ask the other people's first names. When its `ask_each_person` is true, ask who each person would like, or whether anyone will do, and never pick for them. When it is false, ask nobody: every one of its providers is used. Read `check_availability()` with the choices as `schedule_ids`, in seat order with the booker first, `any` for anyone, and book with the same `schedule_ids` and the names as `guest_names`.
 - [ ] A group where packs, passes or a plan could cover seats: read `get_seat_cover_options()` and ask which seat uses what.
 - [ ] Read it back, wait for the yes, and book with `create_booking()`. Give the customer's first and last name and the email or phone already on file, so the booking goes to the existing customer.
 - [ ] Refused `conflict` or `class_full`: read `check_availability()` again and offer other times. Refused `location_required`: read `list_locations()`, ask which, and book again with it.
+- [ ] A couples booking: tell the owner who each person is with, the booking's `provider_name` for the booker and `guests[].provider_name` for the others.
 
 **Move**
 - [ ] Find the booking in `get_customer_overview()`'s `bookings`, or with `list_bookings()` for that date (it cannot search by customer).
 - [ ] Read `check_availability()` for the new date, with the booking's add-ons as `addon_option_ids`.
 - [ ] Read back the old and the new time, wait for the yes, and move it with `reschedule_booking()`, sending only what changes.
+- [ ] A couples booking moves everyone together, each keeping their own provider, so check the new time with `check_availability()` and the booking's providers as `schedule_ids`. To change who someone is with, send `schedule_ids` again, one per person in seat order.
 
 **Cancel**
 - [ ] Find the booking, read it back, wait for the yes, and cancel it with `cancel_booking()`. A pack session or a seat cover goes back on its own, and no fee is charged here.
@@ -71,6 +74,7 @@ Copy the list for the job and tick it off.
 - `reschedule_booking()` with `addon_option_ids` replaces the add-ons: leave it out to keep them.
 - `cancel_booking()` refused `checked_in`: the check-in is undone in the dashboard first. Refused `checked_out`: it was paid for, so it is refunded at the Front Desk.
 - `undo_no_show()` refused `fee_charged`: the no-show fee was already charged; tell the owner.
+- A couples booking refused `conflict`: not enough of its providers are free together then, or one asked for is busy. Refused `provider_picked_twice`: two people were given the same provider. Its `schedule_id` is the booker's; `list_bookings()` with a provider's `schedule_id` finds it under every provider in it.
 
 ## Hand off
 
