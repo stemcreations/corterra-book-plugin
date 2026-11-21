@@ -8,7 +8,8 @@ The tools here are on the Corterra Book connector. If a call fails because nothi
 ## Always
 
 - Before every save, read back what will be saved (the days, the date, the hours and who it covers) and wait for the owner's yes. When the owner's request already says to go ahead, that is the yes: save it.
-- A closure stops new bookings and never cancels the ones already made, so the bookings inside it never hold up saving it. After every closure, find those bookings and ask the owner about each one: move it or cancel it. Never move or cancel one without their yes, and say the customer is emailed either way.
+- A closure stops new bookings and never cancels an ordinary booking already made, so those never hold up saving it. After every closure, find those bookings and ask the owner about each one: move it or cancel it. Never move or cancel one without their yes, and say the customer is emailed either way.
+- The one exception is a couples booking (a service that gives each person their own provider at the same time): a closure over any one of its people cancels it. Such a closure is refused `cancels_bookings` and saves nothing; its `bookings` name each one. Never pass `cancel_bookings` without the owner's yes to cancelling those bookings.
 - The weekly hours, a provider's hours and the observed holidays are each saved as a whole: read them first and keep everything that stays.
 - A booking-page announcement is words only and closes nothing. Close first; announce only when the owner wants customers told.
 - A change refused with `read_only_key`: tell the owner to disconnect Corterra Book, connect it again and choose Read & write. Refused with `pro_required`: say in one sentence that it needs the Pro plan, then carry on with the rest.
@@ -56,6 +57,11 @@ Copy the list for the job and tick it off.
 - [ ] A common holiday: take its `key` from `holiday_catalog`, never a guessed one, and save with `set_observed_holidays()`: every key already observed plus the new one. A date of the owner's own that comes back every year: `add_custom_holiday()`. A date that does not come back: a whole day closed, above.
 - [ ] Then the bookings on its next date (its `next_date` in `holiday_catalog`).
 
+**A closure refused `cancels_bookings`**
+- [ ] Nothing was saved. Read back each booking in `bookings`: who, when, the service, and each person with their provider (`people`).
+- [ ] Ask the owner about each: keep it by moving that person to another provider free at the same time (`check_availability()` with `schedule_ids`, then `reschedule_booking()` with `schedule_ids`, each person in order), or let the closure cancel it. Say the customer and their guests are emailed when it is cancelled.
+- [ ] Once every booking the owner keeps is moved, save the closure again. When some are to be cancelled, the same call with `cancel_bookings` true, on the yes.
+
 **The bookings inside a closure**
 - [ ] Read them: a time block's `conflicts`, or `list_bookings()` with the closed date as `date_from` and `date_to` (and a provider's `schedule_id` for their day off). Leave out cancelled ones.
 - [ ] Show them to the owner, who, what and when, and ask about each: move it or cancel it. Say the customer is emailed either way.
@@ -77,6 +83,7 @@ Copy the list for the job and tick it off.
 - Changing the weekly hours moves no booking already made.
 - A time block must cover a provider or `covers_global` (`no_coverage`), and its end must be after its start (`invalid_range`).
 - `list_bookings()` returns 50 at a time: check `complete`.
+- `cancel_bookings` cancels every couples booking the closure covers, never only some: move the ones being kept first.
 
 ## Hand off
 
